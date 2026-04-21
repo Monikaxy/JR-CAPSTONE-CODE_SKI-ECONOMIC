@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>US average annual snowfall (inches) 1992-2022 (NSAA data)</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: white;
+      display: flex;
+      justify-content: center;
+    }
+
+    #chart {
+      width: 780px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+
+  <script>
+    const years = [
+      1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001,
+      2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011,
+      2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022
+    ];
+
+    const snowfall = [
+      145, 220, 180, 205, 215, 225, 220, 220, 190, 200,
+      175, 200, 205, 210, 235, 175, 245, 225, 205, 260,
+      160, 175, 175, 145, 180, 245, 180, 235, 166, 168, 166
+    ];
+
+    const traceBars = {
+      x: years,
+      y: snowfall,
+      type: 'bar',
+      marker: {
+        color: 'skyblue'
+      },
+      hovertemplate: 'Year: %{x}<br>Snowfall: %{y} inches<extra></extra>'
+    };
+
+    const traceLine = {
+      x: [1992, 2022],
+      y: [200, 200],
+      type: 'scatter',
+      mode: 'lines',
+      line: {
+        color: '#1f77b4',
+        width: 3
+      },
+      hoverinfo: 'skip',
+      showlegend: false
+    };
+
+    const layout = {
+      title: {
+        text: 'US average annual snowfall (inches) 1992-2022 (NSAA data)',
+        font: {
+          size: 18
+        }
+      },
+      width: 780,
+      height: 500,
+      paper_bgcolor: 'white',
+      plot_bgcolor: 'white',
+      margin: {
+        l: 80,
+        r: 30,
+        t: 60,
+        b: 80
+      },
+      xaxis: {
+        title: {
+          text: 'Year',
+          font: {
+            size: 16
+          }
+        },
+        tickangle: -45,
+        showgrid: false,
+        zeroline: false
+      },
+      yaxis: {
+        title: {
+          text: 'Snowfall (inches)',
+          font: {
+            size: 16
+          }
+        },
+        range: [0, 275],
+        dtick: 50,
+        showgrid: false,
+        zeroline: false
+      },
+      bargap: 0.18
+    };
+
+    const config = {
+      responsive: true,
+      displayModeBar: true,
+      scrollZoom: true
+    };
+
+    Plotly.newPlot('chart', [traceBars, traceLine], layout, config);
+  </script>
+</body>
+</html>

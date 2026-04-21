@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Top Ten Warmest December's in Colorado</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .wrapper {
+      width: 576px;
+      height: 432px;
+      margin: 0 auto;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <canvas id="warmChart" width="576" height="432"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('warmChart').getContext('2d');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['1933', '2025', '1980', '1939', '1889', '1906', '1946', '1957', '1881', '2024'],
+        datasets: [{
+          data: [43.8, 42.3, 41.2, 40.9, 40.5, 39.7, 39.6, 39.5, 39.5, 39.4],
+          backgroundColor: ['blue', 'red', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'],
+          borderWidth: 0,
+          categoryPercentage: 0.82,
+          barPercentage: 0.9
+        }]
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        animation: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: "Top Ten Warmest December's in Colorado",
+            font: {
+              size: 16
+            },
+            padding: {
+              top: 10,
+              bottom: 10
+            }
+          },
+          zoom: {
+            pan: {
+              enabled: true,
+              mode: 'x'
+            },
+            zoom: {
+              wheel: {
+                enabled: true
+              },
+              pinch: {
+                enabled: true
+              },
+              mode: 'x'
+            }
+          },
+          tooltip: {
+            enabled: true
+          }
+        },
+        layout: {
+          padding: {
+            left: 8,
+            right: 8,
+            top: 8,
+            bottom: 0
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Year',
+              font: {
+                size: 14
+              }
+            },
+            ticks: {
+              font: {
+                size: 12
+              }
+            },
+            grid: {
+              display: false
+            },
+            border: {
+              display: true
+            }
+          },
+          y: {
+            min: 39,
+            max: 44.5,
+            title: {
+              display: true,
+              text: 'Temperature (°F)',
+              font: {
+                size: 14
+              }
+            },
+            ticks: {
+              stepSize: 1,
+              font: {
+                size: 12
+              }
+            },
+            grid: {
+              display: false
+            },
+            border: {
+              display: true
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
